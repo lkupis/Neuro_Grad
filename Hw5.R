@@ -1,0 +1,31 @@
+d <- read.table("prestige.dat", header = TRUE)
+library(psych)
+library(dplyr)
+libary()
+describe(d)
+class(d$type)
+contrasts(d$type)
+#unit weighted coding
+
+d$C1=recode(d$type, "'bc'=.3333;'wc'=.3333;'prof'=-.66667", as.factor = FALSE) 
+d$C2=recode(d$type, "'bc'=.5;'wc'=-.5;'prof'=0", as.factor = FALSE)
+summary(d)
+mA= lm(income ~ C1+ C2, data=d)
+summary(mA)
+#Check to see if linear model works
+x <- filter(d, type == "prof")
+mean(x$income)
+y <- filter(d, type == "wc")
+mean(y$income)
+z <- filter(d, type == "bc")
+mean(z$income)
+#dummy coding
+d$C3=recode(d$type, "'bc'=1;'wc'=0;'prof'=0", as.factor = FALSE) 
+d$C4=recode(d$type, "'bc'=0;'wc'=1;'prof'=0", as.factor = FALSE)
+d$C5=recode(d$type, "'bc'=0;'wc'=1;'prof'=0", as.factor = FALSE)
+d$C6=recode(d$type, "'bc'=0;'wc'=0;'prof'=1", as.factor = FALSE)
+
+mDum = lm(income ~ C3 + C4, data=d)
+mDum2 = lm(income ~ C5 + C6, data=d)
+summary(mDum)
+summary(mDum2)
