@@ -1,0 +1,28 @@
+#!/bin/bash
+#runs through each subject folder, and then takes in denoised.nii file and then 
+
+
+for s in {1..44}; do 
+	echo subject: ${s}
+	if [ $s -lt 10 ]; then
+
+		subj=s_000${s}
+
+	elif [ $s -lt 100 ]; then
+
+		subj=s_00${s}
+
+	else
+		subj=s_0${s}
+		
+	fi
+
+	
+chmod 777 /deep/uddin/work/Lauren/dpabi/Task4/FunImgARWS/${subj}/task4.nii
+done
+
+			
+
+
+
+

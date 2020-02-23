@@ -1,0 +1,2 @@
+for dir in /deep/uddin/work/Lauren/dpabi/Task3/RealignParameter/s_*; do mv $dir/FD_Power* $dir/FD_Power.txt; done
+
